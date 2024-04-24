@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<p>
-				Ajouter un nouveau GENRE (WTForms)
+				Ajouter une nouvelle application
 			</p>
 			<form action="" method="POST" novalidate>
 				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
@@ -15,6 +15,33 @@
 						{{ form.nom_genre_wtf.label }}<br>
 						{{ form.nom_genre_wtf(size=32) }}<br>
 						{% for error in form.nom_genre_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				<div class="form-group">
+					<p>
+						{{ form.description_genre_wtf.label }}<br>
+						{{ form.description_genre_wtf(size=32) }}<br>
+						{% for error in form.description_genre_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				<div class="form-group">
+					<p>
+						{{ form.icon_genre_wtf.label }}<br>
+						{{ form.icon_genre_wtf(size=32) }}<br>
+						{% for error in form.icon_genre_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				<div class="form-group">
+					<p>
+						{{ form.download_genre_wtf.label }}<br>
+						{{ form.download_genre_wtf(size=32) }}<br>
+						{% for error in form.download_genre_wtf.errors %}
 							<span style="color: red;">[{{ error }}]</span>
 						{% endfor %}
 					</p>
