@@ -12,19 +12,19 @@
                 <thead>
                     <tr>
                         <th class="align-middle">
-                            Icon
+
                         </th>
                         <th class="align-middle">
-                            Id
+
                         </th>
                         <th class="align-middle">
-							Application
+
                         </th>
                         <th class="align-middle">
-							Description
+
                         </th>
                         <th class="align-middle">
-							Date de l'upload
+
                         </th>
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
 				<tbody>
 					<tr>
 						<td class="align-middle">
-							{{ row.icon_url }}
+							<img src="{{ row.icon_url }}" class="img-fluid" alt="{{ row.name }}" width="100px">
 						</td>
 						<td class="align-middle">
 							{{ row.id_application }}
