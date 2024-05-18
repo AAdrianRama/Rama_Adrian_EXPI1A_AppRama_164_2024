@@ -23,24 +23,25 @@ class FormWTFAjouterGenres(FlaskForm):
                                                                                   "d'espace à double, de double "
                                                                                   "apostrophe, de double trait union")
                                                                    ])
-    description_genre_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
-    description_genre_wtf = StringField("La description  ", validators=[Length(min=2, max=500, message="min 2 max 500"),
-                                                                   Regexp(nom_genre_regexp,
+    description_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    description_wtf = StringField("La description  ", validators=[Length(min=2, max=500, message="min 2 max 500"),
+                                                                   Regexp(description_regexp,
                                                                           message="Pas de chiffres, de caractères "
                                                                                   "spéciaux, "
                                                                                   "d'espace à double, de double "
                                                                                   "apostrophe, de double trait union")
                                                                    ])
-    icon_genre_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
-    icon_genre_wtf = StringField("L'icon de l'application ", validators=[Length(min=2, max=500, message="min 2 max 500"),
-                                                                   Regexp(nom_genre_regexp,
+    icon_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    icon_wtf = StringField("L'icon de l'application ", validators=[Length(min=2, max=500, message="min 2 max 500"),
+                                                                   Regexp(icon_regexp,
                                                                           message="En format url directement à l'image")
                                                                    ])
-    download_genre_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
-    download_genre_wtf = StringField("Le lien du téléchargement ", validators=[Length(min=2, max=500, message="min 2 max 500"),
-                                                                   Regexp(nom_genre_regexp,
+    download_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    download_wtf = StringField("Le lien du téléchargement ", validators=[Length(min=2, max=500, message="min 2 max 500"),
+                                                                   Regexp(download_regexp,
                                                                           message="En format url directement au téléchargement (si possible !)")
                                                                    ])
+
     submit = SubmitField("Enregistrer l'application")
 
 

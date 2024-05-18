@@ -47,7 +47,7 @@ def genres_afficher(order_by, id_genre_sel):
 
                     mc_afficher.execute(strsql_genres_afficher, valeur_id_genre_selected_dictionnaire)
                 else:
-                    strsql_genres_afficher = """SELECT * FROM applications ORDER BY id_genre DESC"""
+                    strsql_genres_afficher = """SELECT * FROM applications ORDER BY id_application DESC"""
 
                     mc_afficher.execute(strsql_genres_afficher)
 
@@ -103,10 +103,18 @@ def genres_ajouter_wtf():
             if form.validate_on_submit():
                 name_genre_wtf = form.nom_genre_wtf.data
                 name_genre = name_genre_wtf.lower()
-                valeurs_insertion_dictionnaire = {"value_intitule_genre": name_genre}
+                description = form.description_wtf.data
+                icon = form.icon_wtf.data
+                download = form.download_wtf.data
+
+                valeurs_insertion_dictionnaire = {"value_intitule_genre": name_genre,
+                                                  "value_description": description,
+                                                  "value_icon": icon,
+                                                  "value_download": download,
+                                                  }
                 print("valeurs_insertion_dictionnaire ", valeurs_insertion_dictionnaire)
 
-                strsql_insert_genre = """INSERT INTO applications (id_application,nom,icon_url,description,lien_telechargement,date_upload) VALUES (NULL,%(value_intitule_genre)s)"""
+                strsql_insert_genre = """INSERT INTO applications (id_application,nom,icon_url,description,lien_telechargement) VALUES (NULL,%(value_intitule_genre)s,%(value_icon)s,%(value_description)s,%(value_download)s)"""
                 with DBconnection() as mconn_bd:
                     mconn_bd.execute(strsql_insert_genre, valeurs_insertion_dictionnaire)
 
