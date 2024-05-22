@@ -49,19 +49,32 @@ class FormWTFUpdateGenre(FlaskForm):
         Dans le formulaire "genre_update_wtf.html" on impose que le champ soit rempli.
         Définition d'un "bouton" submit avec un libellé personnalisé.
     """
-    nom_genre_update_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
-    nom_genre_update_wtf = StringField("Clavioter le genre ", validators=[Length(min=2, max=20, message="min 2 max 20"),
+    nom_genre_update_regexp = "^[A-ZÀÂÄÇÉÈÊËÎÏÔŒÙÛÜŸ][A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    nom_genre_update_wtf = StringField("Le nom de l'application ", validators=[Length(min=2, max=50, message="min 2 max 50"),
                                                                           Regexp(nom_genre_update_regexp,
-                                                                                 message="Pas de chiffres, de "
-                                                                                         "caractères "
-                                                                                         "spéciaux, "
-                                                                                         "d'espace à double, de double "
-                                                                                         "apostrophe, de double trait "
-                                                                                         "union")
+                                                                                 message="Pas de chiffres, de caractères "
+                                                                                  "spéciaux, "
+                                                                                  "d'espace à double, de double "
+                                                                                  "apostrophe, de double trait union")
                                                                           ])
-    date_genre_wtf_essai = DateField("Essai date", validators=[InputRequired("Date obligatoire"),
-                                                               DataRequired("Date non valide")])
-    submit = SubmitField("Update genre")
+    description_update_regexp = "[A-Za-zÀ-ÖØ-öø-ÿ$$$$\.\-\s]+"
+    description_update_wtf = StringField("La description ", validators=[Length(min=2, max=500, message="min 2 max 500"),
+                                                                          Regexp(description_update_regexp,
+                                                                                 message="Pas de chiffres, "
+                                                                                "d'espace à double, de double "
+                                                                                "apostrophe, de double trait union")
+                                                                          ])
+    icon_update_regexp = "^https?://[^\s/$.?#].[^\s]*\.[a-zA-Z]+$"
+    icon_update_wtf = StringField("L'icon de l'application ", validators=[Length(min=2, max=500, message="min 2 max 500"),
+                                                                          Regexp(icon_update_regexp,
+                                                                                 message="En format url directement à l'image")
+                                                                          ])
+    download_update_regexp = "^https?://[^\s/$.?#].[^\s]*\.[a-zA-Z]+$"
+    download_update_wtf = StringField("Le lien du téléchargement ", validators=[Length(min=2, max=500, message="min 2 max 500"),
+                                                                          Regexp(download_update_regexp,
+                                                                                 message="En format url directement au téléchargement (si possible !)")
+                                                                          ])
+    submit = SubmitField("Mettre à jour l'application")
 
 
 class FormWTFDeleteGenre(FlaskForm):
