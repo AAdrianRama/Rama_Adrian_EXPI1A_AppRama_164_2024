@@ -46,7 +46,7 @@ def genres_ajouter_wtf():
     if request.method == "POST":
         try:
             if form.validate_on_submit():
-                name_genre_wtf = form.nom_genre_wtf.data.lower()
+                name_genre_wtf = form.nom_genre_wtf.data
                 description = form.description_wtf.data
                 icon = form.icon_wtf.data
                 download = form.download_wtf.data
@@ -79,11 +79,11 @@ def genres_ajouter_wtf():
 
 @app.route("/genre_update", methods=['GET', 'POST'])
 def genre_update_wtf():
-    id_genre_update = request.values['id_genre_btn_edit_html']
+    id_genre_update = request.values.get('id_genre_btn_edit_html')  # Use .get() to avoid KeyError
     form_update = FormWTFUpdateGenre()
     try:
         if request.method == "POST" and form_update.submit.data:
-            name_genre_update = form_update.nom_genre_update_wtf.data.lower()
+            name_genre_update = form_update.nom_genre_update_wtf.data
             description_update = form_update.description_update_wtf_essai.data
             icon_update = form_update.icon_update_wtf_essai.data
             download_update = form_update.download_update_wtf_essai.data
@@ -107,7 +107,7 @@ def genre_update_wtf():
 
             flash(f"Donnée mise à jour !!", "success")
             print(f"Donnée mise à jour !!")
-            return redirect(url_for('genres_afficher', order_by="ASC", id_genre_sel=id_genre_update))
+            return redirect(url_for('genres_afficher', order_by="DESC", id_genre_sel=0))
 
         elif request.method == "GET":
             str_sql_id_genre = "SELECT id_application, nom, description, icon_url, lien_telechargement FROM applications WHERE id_application = %(value_id_genre)s"
@@ -115,12 +115,17 @@ def genre_update_wtf():
             with DBconnection() as mybd_conn:
                 mybd_conn.execute(str_sql_id_genre, valeur_select_dictionnaire)
                 data_nom_genre = mybd_conn.fetchone()
-                print("data_nom_genre ", data_nom_genre, " type ", type(data_nom_genre))
 
-            form_update.nom_genre_update_wtf.data = data_nom_genre["nom"]
-            form_update.description_update_wtf_essai.data = data_nom_genre["description"]
-            form_update.icon_update_wtf_essai.data = data_nom_genre["icon_url"]
-            form_update.download_update_wtf_essai.data = data_nom_genre["lien_telechargement"]
+                if data_nom_genre:
+                    print("data_nom_genre ", data_nom_genre, " type ", type(data_nom_genre))
+
+                    form_update.nom_genre_update_wtf.data = data_nom_genre["nom"]
+                    form_update.description_update_wtf_essai.data = data_nom_genre["description"]
+                    form_update.icon_update_wtf_essai.data = data_nom_genre["icon_url"]
+                    form_update.download_update_wtf_essai.data = data_nom_genre["lien_telechargement"]
+                else:
+                    flash(f"Aucune application trouvée pour l'ID {id_genre_update}", "warning")
+                    return redirect(url_for('genres_afficher', order_by="DESC", id_genre_sel=0))
 
     except Exception as Exception_genre_update_wtf:
         raise ExceptionGenreUpdateWtf(f"fichier : {Path(__file__).name}  ;  "
@@ -132,73 +137,41 @@ def genre_update_wtf():
 
 @app.route("/genre_delete", methods=['GET', 'POST'])
 def genre_delete_wtf():
-    data_films_attribue_genre_delete = None
-    btn_submit_del = None
-    id_genre_delete = request.values['id_genre_btn_delete_html']
-
+    id_genre_delete = request.values.get('id_genre_btn_delete_html')  # Use .get() to avoid KeyError
     form_delete = FormWTFDeleteGenre()
     try:
-        print(" on submit ", form_delete.validate_on_submit())
-        if request.method == "POST" and form_delete.validate_on_submit():
-
+        if request.method == "POST":
             if form_delete.submit_btn_annuler.data:
-                return redirect(url_for("genres_afficher", order_by="ASC", id_genre_sel=0))
+                return redirect(url_for("genres_afficher", order_by="DESC", id_genre_sel=0))
 
             if form_delete.submit_btn_conf_del.data:
-                data_films_attribue_genre_delete = session['data_films_attribue_genre_delete']
-                print("data_films_attribue_genre_delete ", data_films_attribue_genre_delete)
-
-                flash(f"Effacer l'application de façon définitive de la BD !!!", "danger")
-                btn_submit_del = True
-
-            if form_delete.submit_btn_del.data:
                 valeur_delete_dictionnaire = {"value_id_genre": id_genre_delete}
                 print("valeur_delete_dictionnaire ", valeur_delete_dictionnaire)
 
-                str_sql_delete_films_genre = """DELETE FROM t_genre_film WHERE fk_genre = %(value_id_genre)s"""
-                str_sql_delete_idgenre = """DELETE FROM applications WHERE id_application = %(value_id_genre)s"""
+                str_sql_delete_genre = """DELETE FROM applications WHERE id_application = %(value_id_genre)s"""
                 with DBconnection() as mconn_bd:
-                    mconn_bd.execute(str_sql_delete_films_genre, valeur_delete_dictionnaire)
-                    mconn_bd.execute(str_sql_delete_idgenre, valeur_delete_dictionnaire)
+                    mconn_bd.execute(str_sql_delete_genre, valeur_delete_dictionnaire)
 
                 flash(f"Application définitivement effacée !!", "success")
                 print(f"Application définitivement effacée !!")
+                return redirect(url_for('genres_afficher', order_by="DESC", id_genre_sel=0))
 
-                return redirect(url_for('genres_afficher', order_by="ASC", id_genre_sel=0))
-
-        if request.method == "GET":
+        elif request.method == "GET":
+            str_sql_id_genre = "SELECT id_application, nom FROM applications WHERE id_application = %(value_id_genre)s"
             valeur_select_dictionnaire = {"value_id_genre": id_genre_delete}
-            print(id_genre_delete, type(id_genre_delete))
+            with DBconnection() as mybd_conn:
+                mybd_conn.execute(str_sql_id_genre, valeur_select_dictionnaire)
+                data_nom_genre = mybd_conn.fetchone()
 
-            str_sql_genres_films_delete = """SELECT id_genre_film, nom_film, id_genre, intitule_genre FROM t_genre_film 
-                                            INNER JOIN t_film ON t_genre_film.fk_film = t_film.id_film
-                                            INNER JOIN t_genre ON t_genre_film.fk_genre = t_genre.id_genre
-                                            WHERE fk_genre = %(value_id_genre)s"""
-
-            with DBconnection() as mydb_conn:
-                mydb_conn.execute(str_sql_genres_films_delete, valeur_select_dictionnaire)
-                data_films_attribue_genre_delete = mydb_conn.fetchall()
-                print("data_films_attribue_genre_delete...", data_films_attribue_genre_delete)
-
-                session['data_films_attribue_genre_delete'] = data_films_attribue_genre_delete
-
-                str_sql_id_genre = "SELECT id_application, nom FROM applications WHERE id_application = %(value_id_genre)s"
-
-                mydb_conn.execute(str_sql_id_genre, valeur_select_dictionnaire)
-                data_nom_genre = mydb_conn.fetchone()
-                print("data_nom_genre ", data_nom_genre, " type ", type(data_nom_genre), " genre ",
-                      data_nom_genre["nom"])
-
-            form_delete.nom_genre_delete_wtf.data = data_nom_genre["nom"]
-
-            btn_submit_del = False
+                if data_nom_genre:
+                    form_delete.nom_genre_delete_wtf.data = data_nom_genre["nom"]
+                else:
+                    flash(f"Aucune application trouvée pour l'ID {id_genre_delete}", "warning")
+                    return redirect(url_for('genres_afficher', order_by="DESC", id_genre_sel=0))
 
     except Exception as Exception_genre_delete_wtf:
         raise ExceptionGenreDeleteWtf(f"fichier : {Path(__file__).name}  ;  "
                                       f"{genre_delete_wtf.__name__} ; "
                                       f"{Exception_genre_delete_wtf}")
 
-    return render_template("genres/genre_delete_wtf.html",
-                           form_delete=form_delete,
-                           btn_submit_del=btn_submit_del,
-                           data_films_associes=data_films_attribue_genre_delete)
+    return render_template("genres/genre_delete_wtf.html", form_delete=form_delete)

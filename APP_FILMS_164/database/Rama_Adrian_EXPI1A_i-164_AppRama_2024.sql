@@ -1,13 +1,13 @@
 -- --------------------------------------------------------
--- Hôte:                         127.0.0.1
--- Version du serveur:           8.0.30 - MySQL Community Server - GPL
--- SE du serveur:                Win64
+-- Host:                         127.0.0.1
+-- Server version:               8.0.30 - MySQL Community Server - GPL
+-- Server OS:                    Win64
 -- HeidiSQL Version:             12.1.0.6537
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
@@ -15,24 +15,24 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Listage de la structure de la base pour rama_adrian_expi1a_i164
+-- Dumping database structure for rama_adrian_expi1a_i164
 DROP DATABASE IF EXISTS `rama_adrian_expi1a_i164`;
-CREATE DATABASE IF NOT EXISTS `rama_adrian_expi1a_i164` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `rama_adrian_expi1a_i164` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `rama_adrian_expi1a_i164`;
 
--- Listage de la structure de table rama_adrian_expi1a_i164. applications
+-- Dumping structure for table rama_adrian_expi1a_i164.applications
 DROP TABLE IF EXISTS `applications`;
 CREATE TABLE IF NOT EXISTS `applications` (
   `id_application` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
-  `icon_url` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `icon_url` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `description` text,
-  `lien_telechargement` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `lien_telechargement` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `date_upload` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_application`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.applications : ~12 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.applications: ~13 rows (approximately)
 INSERT INTO `applications` (`id_application`, `nom`, `icon_url`, `description`, `lien_telechargement`, `date_upload`) VALUES
 	(1, 'Discord', 'https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-o5mluhz2.png', 'Discord est une plateforme de VoIP et de messagerie instantanée.', 'https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64', '2024-04-23 18:50:34'),
 	(2, 'paint.net', 'https://www.techspot.com/images2/downloads/topdownload/2014/06/paint.net.png', 'paint.net (anciennement Paint.NET) est un logiciel de retouche photo gratuit.', 'https://github.com/paintdotnet/release/releases/download/v5.0.13/paint.net.5.0.13.install.anycpu.web.zip', '2024-04-23 18:52:52'),
@@ -45,9 +45,10 @@ INSERT INTO `applications` (`id_application`, `nom`, `icon_url`, `description`, 
 	(9, 'Jave JRE', 'https://static-00.iconduck.com/assets.00/java-icon-1511x2048-6ikx8301.png', 'Java est un langage de programmation de haut niveau orienté objet créé par James Gosling et Patrick Naughton, employés de Sun Microsystems, avec le soutien de Bill Joy, présenté officiellement le 23 mai 1995 au SunWorld.', 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=249851_43d62d619be4e416215729597d70b8ac', '2024-04-23 19:03:10'),
 	(10, 'Jave JDK 22', 'https://static-00.iconduck.com/assets.00/java-icon-1511x2048-6ikx8301.png', 'Le Java Development Kit désigne un ensemble de bibliothèques logicielles de base du langage de programmation Java, ainsi que les outils avec lesquels le code Java peut être compilé, transformé en bytecode destiné à la machine virtuelle Java.', 'https://download.oracle.com/java/22/latest/jdk-22_windows-x64_bin.exe', '2024-04-23 19:03:10'),
 	(11, 'ShareX', 'https://upload.wikimedia.org/wikipedia/commons/d/d1/ShareX_Logo.png', 'ShareX est un logiciel libre et open source de capture d\'écran pour Microsoft Windows.', 'https://github.com/ShareX/ShareX/releases/download/v16.0.1/ShareX-16.0.1-setup.exe', '2024-04-23 19:05:22'),
-	(12, 'Laragon Full', 'https://i.pinimg.com/originals/a6/31/32/a631321da408385e13a803084482d05b.png', 'Laragon est un environnement de développement universel portable, isolé, rapide et puissant pour Windows.', 'https://github.com/leokhoa/laragon/releases/download/6.0.0/laragon-wamp.exe', '2024-04-23 19:06:17');
+	(12, 'Laragon Full', 'https://i.pinimg.com/originals/a6/31/32/a631321da408385e13a803084482d05b.png', 'Laragon est un environnement de développement universel portable, isolé, rapide et puissant pour Windows.', 'https://github.com/leokhoa/laragon/releases/download/6.0.0/laragon-wamp.exe', '2024-04-23 19:06:17'),
+	(13, 'Virtualbox', 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Virtualbox_logo.png', 'Oracle VM VirtualBox (anciennement VirtualBox) est un logiciel libre de virtualisation créé par la société Innotek rachetée par Sun Microsystems et aujourd\'hui publié par Oracle.', 'https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18-162988-Win.exe', '2024-05-29 18:19:26');
 
--- Listage de la structure de table rama_adrian_expi1a_i164. applicationscategories
+-- Dumping structure for table rama_adrian_expi1a_i164.applicationscategories
 DROP TABLE IF EXISTS `applicationscategories`;
 CREATE TABLE IF NOT EXISTS `applicationscategories` (
   `id_application` int NOT NULL,
@@ -56,21 +57,43 @@ CREATE TABLE IF NOT EXISTS `applicationscategories` (
   KEY `id_categorie` (`id_categorie`),
   CONSTRAINT `applicationscategories_ibfk_1` FOREIGN KEY (`id_application`) REFERENCES `applications` (`id_application`),
   CONSTRAINT `applicationscategories_ibfk_2` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id_categorie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.applicationscategories : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.applicationscategories: ~13 rows (approximately)
+INSERT INTO `applicationscategories` (`id_application`, `id_categorie`) VALUES
+	(13, 1),
+	(5, 2),
+	(6, 2),
+	(7, 2),
+	(8, 2),
+	(10, 2),
+	(12, 2),
+	(4, 3),
+	(3, 4),
+	(11, 4),
+	(1, 5),
+	(9, 6),
+	(2, 7);
 
--- Listage de la structure de table rama_adrian_expi1a_i164. categories
+-- Dumping structure for table rama_adrian_expi1a_i164.categories
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id_categorie` int NOT NULL AUTO_INCREMENT,
   `nom_categorie` varchar(50) NOT NULL,
   PRIMARY KEY (`id_categorie`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.categories : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.categories: ~7 rows (approximately)
+INSERT INTO `categories` (`id_categorie`, `nom_categorie`) VALUES
+	(1, 'Virtualization'),
+	(2, 'Programmation'),
+	(3, 'Gaming'),
+	(4, 'Productivité'),
+	(5, 'Communication'),
+	(6, 'Divertissement'),
+	(7, 'Art');
 
--- Listage de la structure de table rama_adrian_expi1a_i164. commentaires
+-- Dumping structure for table rama_adrian_expi1a_i164.commentaires
 DROP TABLE IF EXISTS `commentaires`;
 CREATE TABLE IF NOT EXISTS `commentaires` (
   `id_commentaire` int NOT NULL AUTO_INCREMENT,
@@ -84,21 +107,21 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   KEY `id_application` (`id_application`),
   CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`),
   CONSTRAINT `commentaires_ibfk_2` FOREIGN KEY (`id_application`) REFERENCES `applications` (`id_application`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.commentaires : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.commentaires: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. roles
+-- Dumping structure for table rama_adrian_expi1a_i164.roles
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id_role` int NOT NULL AUTO_INCREMENT,
   `nom_role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_role`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.roles : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.roles: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. signalements
+-- Dumping structure for table rama_adrian_expi1a_i164.signalements
 DROP TABLE IF EXISTS `signalements`;
 CREATE TABLE IF NOT EXISTS `signalements` (
   `id_signalement` int NOT NULL AUTO_INCREMENT,
@@ -111,11 +134,11 @@ CREATE TABLE IF NOT EXISTS `signalements` (
   KEY `id_application` (`id_application`),
   CONSTRAINT `signalements_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`),
   CONSTRAINT `signalements_ibfk_2` FOREIGN KEY (`id_application`) REFERENCES `applications` (`id_application`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.signalements : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.signalements: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. telechargements
+-- Dumping structure for table rama_adrian_expi1a_i164.telechargements
 DROP TABLE IF EXISTS `telechargements`;
 CREATE TABLE IF NOT EXISTS `telechargements` (
   `id_telechargement` int NOT NULL AUTO_INCREMENT,
@@ -127,11 +150,11 @@ CREATE TABLE IF NOT EXISTS `telechargements` (
   KEY `id_application` (`id_application`),
   CONSTRAINT `telechargements_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`),
   CONSTRAINT `telechargements_ibfk_2` FOREIGN KEY (`id_application`) REFERENCES `applications` (`id_application`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.telechargements : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.telechargements: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. utilisateurs
+-- Dumping structure for table rama_adrian_expi1a_i164.utilisateurs
 DROP TABLE IF EXISTS `utilisateurs`;
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `id_utilisateur` int NOT NULL AUTO_INCREMENT,
@@ -142,11 +165,11 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `mail` varchar(100) NOT NULL,
   `date_enregistrement` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_utilisateur`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.utilisateurs : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.utilisateurs: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. utilisateursroles
+-- Dumping structure for table rama_adrian_expi1a_i164.utilisateursroles
 DROP TABLE IF EXISTS `utilisateursroles`;
 CREATE TABLE IF NOT EXISTS `utilisateursroles` (
   `id_utilisateur` int NOT NULL,
@@ -155,9 +178,9 @@ CREATE TABLE IF NOT EXISTS `utilisateursroles` (
   KEY `id_role` (`id_role`),
   CONSTRAINT `utilisateursroles_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`),
   CONSTRAINT `utilisateursroles_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.utilisateursroles : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.utilisateursroles: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
