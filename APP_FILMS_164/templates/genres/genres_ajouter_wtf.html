@@ -2,54 +2,50 @@
 {% block title %} Ajouter une application {% endblock %}
 {% block body %}
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<p>
-				Ajouter une nouvelle application
-			</p>
-			<form action="" method="POST" novalidate>
-				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
-				{{ form.hidden_tag() }}
-				<div class="form-group">
-					<p>
-						{{ form.nom_genre_wtf.label }}<br>
-						{{ form.nom_genre_wtf(size=32) }}<br>
-						{% for error in form.nom_genre_wtf.errors %}
-							<span style="color: red;">[{{ error }}]</span>
-						{% endfor %}
-					</p>
-				</div>
-				<div class="form-group">
-					<p>
-						{{ form.description_wtf.label }}<br>
-						{{ form.description_wtf(size=32) }}<br>
-						{% for error in form.description_wtf.errors %}
-							<span style="color: red;">[{{ error }}]</span>
-						{% endfor %}
-					</p>
-				</div>
-				<div class="form-group">
-					<p>
-						{{ form.icon_wtf.label }}<br>
-						{{ form.icon_wtf(size=32) }}<br>
-						{% for error in form.icon_wtf.errors %}
-							<span style="color: red;">[{{ error }}]</span>
-						{% endfor %}
-					</p>
-				</div>
-				<div class="form-group">
-					<p>
-						{{ form.download_wtf.label }}<br>
-						{{ form.download_wtf(size=32) }}<br>
-						{% for error in form.download_wtf.errors %}
-							<span style="color: red;">[{{ error }}]</span>
-						{% endfor %}
-					</p>
-				</div>
-				{{ form.submit(class="btn btn-primary") }}
-			</form>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Ajouter une nouvelle application</h2>
+            <form action="" method="POST" novalidate>
+                <!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    <label for="nom_genre_wtf">{{ form.nom_genre_wtf.label }}</label>
+                    {{ form.nom_genre_wtf(class="form-control", id="nom_genre_wtf") }}
+                    {% for error in form.nom_genre_wtf.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="description_wtf">{{ form.description_wtf.label }}</label>
+                    {{ form.description_wtf(class="form-control", id="description_wtf") }}
+                    {% for error in form.description_wtf.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="icon_wtf">{{ form.icon_wtf.label }}</label>
+                    {{ form.icon_wtf(class="form-control", id="icon_wtf") }}
+                    {% for error in form.icon_wtf.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="download_wtf">{{ form.download_wtf.label }}</label>
+                    {{ form.download_wtf(class="form-control", id="download_wtf") }}
+                    {% for error in form.download_wtf.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
-
