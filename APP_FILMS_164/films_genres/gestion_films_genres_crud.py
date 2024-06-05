@@ -48,7 +48,7 @@ ORDER BY
                 elif not data_genres_films_afficher and id_film_sel > 0:
                     flash(f"L'application {id_film_sel} demandée n'existe pas !!", "warning")
                 else:
-                    flash(f"Données applications et genres affichés !!", "success")
+                    flash(f"Données applications et catégories affichés !!", "success")
 
         except Exception as Exception_films_genres_afficher:
             raise ExceptionFilmsGenresAfficher(f"fichier : {Path(__file__).name}  ;  {films_genres_afficher.__name__} ;"
