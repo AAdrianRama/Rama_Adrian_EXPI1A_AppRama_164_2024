@@ -3,27 +3,30 @@
 {% block body %}
 <div class="container">
     <div class="col-md-12">
+        <p>
+            Liste des applications avec leurs catégories
+        </p>
         <table class="table table-responsive-sm">
             {% if data %}
                 <thead>
                     <tr>
                         <th class="">
-                            Nom
+
                         </th>
                         <th class="">
-                            Description
+
                         </th>
                         <th class="">
-                            Lien de téléchargement
+
                         </th>
                         <th class="">
-                            Date d'upload
+
                         </th>
                         <th class="">
-                            Catégories
+
                         </th>
                         <th class="">
-                            Actions
+
                         </th>
                     </tr>
                 </thead>
@@ -31,14 +34,14 @@
             {% for row in data %}
                 <tbody>
                     <tr>
+						<td class="align-middle">
+							<img src="{{ row.icon_url }}" class="img-fluid" alt="{{ row.name }}" width="100px">
+						</td>
                         <td class="align-middle">
                             {{ row.nom }}
                         </td>
                         <td class="align-middle">
                             {{ row.description }}
-                        </td>
-                        <td class="align-middle">
-                            <a href="{{ row.lien_telechargement }}" target="_blank">Télécharger</a>
                         </td>
                         <td class="align-middle">
                             {{ row.date_upload }}

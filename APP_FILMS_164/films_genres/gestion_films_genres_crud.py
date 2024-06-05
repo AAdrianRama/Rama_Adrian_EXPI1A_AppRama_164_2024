@@ -10,25 +10,28 @@ def films_genres_afficher(id_film_sel):
         try:
             with DBconnection() as mc_afficher:
                 strsql_genres_films_afficher_data = """
-                    SELECT 
-                        a.id_application, 
-                        a.nom, 
-                        a.icon_url, 
-                        a.description, 
-                        a.lien_telechargement, 
-                        a.date_upload,
-                        GROUP_CONCAT(c.nom_categorie SEPARATOR ', ') AS GenresFilms
-                    FROM 
-                        applications a
-                    LEFT JOIN 
-                        categories c ON a.id_categorie = c.id_categorie
-                    GROUP BY 
-                        a.id_application, 
-                        a.nom, 
-                        a.icon_url, 
-                        a.description, 
-                        a.lien_telechargement, 
-                        a.date_upload
+SELECT 
+    a.id_application, 
+    a.nom, 
+    a.icon_url, 
+    a.description, 
+    a.lien_telechargement, 
+    a.date_upload,
+    GROUP_CONCAT(c.nom_categorie SEPARATOR ', ') AS GenresFilms
+FROM 
+    applications a
+LEFT JOIN 
+    categories c ON a.id_categorie = c.id_categorie
+GROUP BY 
+    a.id_application, 
+    a.nom, 
+    a.icon_url, 
+    a.description, 
+    a.lien_telechargement, 
+    a.date_upload
+ORDER BY 
+    a.date_upload DESC;
+
                 """
                 if id_film_sel == 0:
                     mc_afficher.execute(strsql_genres_films_afficher_data)
