@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Afficher APPLICATIONS GENRES {% endblock %}
+{% block title %} Modifier la Catégorie de l'Application {% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='tags-selector-tagselect/jquery.tagselect.css') }}">
     <script src="{{ url_for('static', filename='tags-selector-tagselect/jquery.tagselect.js') }}"></script>
@@ -13,38 +13,35 @@
 <div class="container">
     <div class="col-md-12">
         <p>
-            Changer la catégorie de l'application si dessous (VEUILLEZ METTRE SEULEMENT UNE SEUL CATÉGORIE)
+            Changer la catégorie de l'application ci-dessous (VEUILLEZ METTRE SEULEMENT UNE SEULE CATÉGORIE)
         </p>
         <p>Applications.</p>
         <table class="table table-responsive-sm">
             {% if data_film_selected %}
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Titre</th>
-                        <th>Description</th>
-                        <th>Lien</th>
-                        <th>Date Upload</th>
+                        <th></th>
+                        <th>Nom</th>
                         <th>Catégorie</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
             {% endif %}
             {% for row in data_film_selected %}
                 <tbody>
                     <tr>
-                        <td class="align-middle">{{ row.id_application }}</td>
+                        <td class="align-middle">
+                            <img src="{{ row.icon_url }}" class="img-fluid" alt="{{ row.nom }}" width="150px">
+                        </td>
                         <td class="align-middle">{{ row.nom }}</td>
-                        <td class="align-middle">{{ row.description }}</td>
-                        <td class="align-middle"><a href="{{ row.lien_telechargement }}">Télécharger</a></td>
-                        <td class="align-middle">{{ row.date_upload }}</td>
                         <td class="align-middle">{{ row.nom_categorie }}</td>
+                        <td class="align-middle">{{ row.description }}</td>
                     </tr>
                 </tbody>
             {% else %}
                 <tbody>
                     <tr>
-                        <td>Aucune application.</td>
-                        <td><a class="btn btn-primary" href="{{ url_for('avertissement_sympa_pour_geeks') }}" role="button">Add</a></td>
+                        <td colspan="4">Aucune application.</td>
                     </tr>
                 </tbody>
             {% endfor %}
@@ -57,7 +54,7 @@
             <div class="p-3">
                 <form id="form_tags_select_confirm" action="{{ url_for('update_genre_film_selected') }}" method="POST">
                     <div class="qtagselect isw360">
-                        <select id="OM_JTSD" name="name_select_tags" class="qtagselect__select" multiple>
+                        <select id="OM_JTSD" name="name_select_tags" class="qtagselect__select" size="10">
                             {% for row in data_genres_non_attribues %}
                                 <option value="{{ row.id_categorie }}" name="name_tags_non_attribues_html" class="isblue">{{ row.nom_categorie }}</option>
                             {% endfor %}
@@ -80,8 +77,8 @@
 {% block javascript %}
 <script>
     $('.qtagselect__select').tagselect({
-        'maxTag': 100,
-        'tagMessage': '100 tags au max !'
+        'maxTag': 1,  // Limite à une seule sélection
+        'tagMessage': 'Une seule catégorie au max !'
     });
 </script>
 {% endblock %}

@@ -43,6 +43,19 @@ def genres_afficher(order_by, id_genre_sel):
 @app.route("/genres_ajouter", methods=['GET', 'POST'])
 def genres_ajouter_wtf():
     form = FormWTFAjouterGenres()
+
+    # Charger les catégories depuis la base de données
+    try:
+        with DBconnection() as mc:
+            strsql_categorie = """SELECT id_categorie, nom_categorie FROM categories ORDER BY nom_categorie ASC"""
+            mc.execute(strsql_categorie)
+            categories = mc.fetchall()
+            form.categorie_wtf.choices = [(cat['id_categorie'], cat['nom_categorie']) for cat in categories]
+    except Exception as e:
+        raise ExceptionGenresAjouterWtf(f"fichier : {Path(__file__).name}  ;  "
+                                        f"{genres_ajouter_wtf.__name__} ; "
+                                        f"{str(e)}")
+
     if request.method == "POST":
         try:
             if form.validate_on_submit():
@@ -50,17 +63,19 @@ def genres_ajouter_wtf():
                 description = form.description_wtf.data
                 icon = form.icon_wtf.data
                 download = form.download_wtf.data
+                categorie_id = form.categorie_wtf.data  # Récupération de l'ID de la catégorie sélectionnée
 
                 valeurs_insertion_dictionnaire = {
                     "value_intitule_genre": name_genre_wtf,
                     "value_description": description,
                     "value_icon": icon,
                     "value_download": download,
+                    "value_categorie_id": categorie_id
                 }
                 print("valeurs_insertion_dictionnaire ", valeurs_insertion_dictionnaire)
 
-                strsql_insert_genre = """INSERT INTO applications (nom, icon_url, description, lien_telechargement) 
-                                         VALUES (%(value_intitule_genre)s, %(value_icon)s, %(value_description)s, %(value_download)s)"""
+                strsql_insert_genre = """INSERT INTO applications (nom, icon_url, description, lien_telechargement, id_categorie) 
+                                         VALUES (%(value_intitule_genre)s, %(value_icon)s, %(value_description)s, %(value_download)s, %(value_categorie_id)s)"""
                 with DBconnection() as mconn_bd:
                     mconn_bd.execute(strsql_insert_genre, valeurs_insertion_dictionnaire)
 

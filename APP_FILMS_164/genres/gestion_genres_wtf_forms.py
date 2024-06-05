@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import Length, Regexp
 
 class FormWTFAjouterGenres(FlaskForm):
@@ -28,8 +28,9 @@ class FormWTFAjouterGenres(FlaskForm):
                                                                    Regexp(download_regexp,
                                                                           message="En format url directement au téléchargement (si possible !)")
                                                                    ])
-
+    categorie_wtf = SelectField("Catégorie", choices=[])  # Ajout du SelectField pour les catégories
     submit = SubmitField("Enregistrer l'application")
+
 
 
 class FormWTFUpdateGenre(FlaskForm):

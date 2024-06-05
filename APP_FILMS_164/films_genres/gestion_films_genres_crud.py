@@ -121,8 +121,11 @@ def update_genre_film_selected():
 
             session.clear()
 
+            # Limiter à une seule sélection
             new_lst_str_genres_films = request.form.getlist('name_select_tags')
-            print("new_lst_str_genres_films ", new_lst_str_genres_films)
+            if len(new_lst_str_genres_films) > 1:
+                flash("Vous ne pouvez sélectionner qu'une seule catégorie.", "warning")
+                return redirect(url_for('edit_genre_film_selected'))
 
             new_lst_int_genre_film_old = list(map(int, new_lst_str_genres_films))
             print("new_lst_genre_film ", new_lst_int_genre_film_old, "type new_lst_genre_film ", type(new_lst_int_genre_film_old))

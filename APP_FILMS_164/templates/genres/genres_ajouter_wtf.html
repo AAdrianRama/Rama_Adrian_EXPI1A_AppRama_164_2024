@@ -42,6 +42,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="categorie_wtf">{{ form.categorie_wtf.label }}</label>
+                    {{ form.categorie_wtf(class="form-control", id="categorie_wtf") }}
+                    {% for error in form.categorie_wtf.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
                     {{ form.submit(class="btn btn-primary") }}
                 </div>
             </form>
