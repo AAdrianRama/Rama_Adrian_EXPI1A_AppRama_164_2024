@@ -47,4 +47,4 @@ Download PyCharm: Python IDE for Professional Developers by JetBrains
 1er lancement
 1) Sur Pycharm dans le dossier ../APP_FILMS_164/database lancer le fichier 1_importationDumpSql.py en faisant un clic droit dessus et cliquer sur la flèche verte. Cela importera la base de donée
 2) Faites pareil avec le fichier 2_test_connection_bd.py. Cela testera la connectivité avec le serveur.
-3) Pour finir lancer le fichier run_mon_app.py se trouvant dans le dossier ../APP_FILMS_164/database
+3) Pour finir lancer le fichier run_mon_app.py se trouvant dans le dossier ../APP_FILMS_164/
