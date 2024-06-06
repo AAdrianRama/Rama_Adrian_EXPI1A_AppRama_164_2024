@@ -1,6 +1,6 @@
-FlaskWebS
+##FlaskWebS##
 
-Il s'agit d'une simple application web créée dans le cadre du projet Modulus 164.
+Il s'agit d'une simple application web créée dans le cadre du projet Module 164.
 
 Le but de ce projet est de montrer nos compétences et notre compréhension du développement web (feuille de route ici).
 
