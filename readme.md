@@ -1,4 +1,4 @@
-##FlaskWebS##
+# FlaskWebS
 
 Il s'agit d'une simple application web créée dans le cadre du projet Module 164.
 
