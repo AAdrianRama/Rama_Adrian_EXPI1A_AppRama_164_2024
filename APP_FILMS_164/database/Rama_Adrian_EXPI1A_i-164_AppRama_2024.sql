@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Hôte:                         127.0.0.1
--- Version du serveur:           8.0.30 - MySQL Community Server - GPL
--- SE du serveur:                Win64
+-- Host:                         127.0.0.1
+-- Server version:               8.0.30 - MySQL Community Server - GPL
+-- Server OS:                    Win64
 -- HeidiSQL Version:             12.1.0.6537
 -- --------------------------------------------------------
 
@@ -15,12 +15,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Listage de la structure de la base pour rama_adrian_expi1a_i164
+-- Dumping database structure for rama_adrian_expi1a_i164
 DROP DATABASE IF EXISTS `rama_adrian_expi1a_i164`;
 CREATE DATABASE IF NOT EXISTS `rama_adrian_expi1a_i164` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `rama_adrian_expi1a_i164`;
 
--- Listage de la structure de table rama_adrian_expi1a_i164. applications
+-- Dumping structure for table rama_adrian_expi1a_i164.applications
 DROP TABLE IF EXISTS `applications`;
 CREATE TABLE IF NOT EXISTS `applications` (
   `id_application` int NOT NULL AUTO_INCREMENT,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `applications` (
   CONSTRAINT `fk_applications_categories` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id_categorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.applications : ~13 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.applications: ~13 rows (approximately)
 INSERT INTO `applications` (`id_application`, `nom`, `icon_url`, `description`, `lien_telechargement`, `date_upload`, `id_categorie`) VALUES
 	(1, 'Discord', 'https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-o5mluhz2.png', 'Discord est une plateforme de VoIP et de messagerie instantanée.', 'https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64', '2024-04-23 18:50:34', 5),
 	(2, 'paint.net', 'https://www.techspot.com/images2/downloads/topdownload/2014/06/paint.net.png', 'paint.net (anciennement Paint.NET) est un logiciel de retouche photo gratuit.', 'https://github.com/paintdotnet/release/releases/download/v5.0.13/paint.net.5.0.13.install.anycpu.web.zip', '2024-04-23 18:52:52', 7),
@@ -51,25 +51,26 @@ INSERT INTO `applications` (`id_application`, `nom`, `icon_url`, `description`, 
 	(12, 'Laragon Full', 'https://i.pinimg.com/originals/a6/31/32/a631321da408385e13a803084482d05b.png', 'Laragon est un environnement de développement universel portable, isolé, rapide et puissant pour Windows.', 'https://github.com/leokhoa/laragon/releases/download/6.0.0/laragon-wamp.exe', '2024-04-23 19:06:17', 2),
 	(13, 'Virtualbox', 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Virtualbox_logo.png', 'Oracle VM VirtualBox (anciennement VirtualBox) est un logiciel libre de virtualisation créé par la société Innotek rachetée par Sun Microsystems et aujourd\'hui publié par Oracle.', 'https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18-162988-Win.exe', '2024-05-29 18:19:26', 1);
 
--- Listage de la structure de table rama_adrian_expi1a_i164. categories
+-- Dumping structure for table rama_adrian_expi1a_i164.categories
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
+  `icon_url` varchar(500) DEFAULT NULL,
   `id_categorie` int NOT NULL AUTO_INCREMENT,
   `nom_categorie` varchar(50) NOT NULL,
   PRIMARY KEY (`id_categorie`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.categories : ~7 rows (environ)
-INSERT INTO `categories` (`id_categorie`, `nom_categorie`) VALUES
-	(1, 'Virtualization'),
-	(2, 'Programmation'),
-	(3, 'Gaming'),
-	(4, 'Productivité'),
-	(5, 'Communication'),
-	(6, 'Divertissement'),
-	(7, 'Art');
+-- Dumping data for table rama_adrian_expi1a_i164.categories: ~7 rows (approximately)
+INSERT INTO `categories` (`icon_url`, `id_categorie`, `nom_categorie`) VALUES
+	('https://cdn-icons-png.flaticon.com/512/3211/3211307.png', 1, 'Virtualization'),
+	('https://cdn-icons-png.flaticon.com/512/1197/1197409.png', 2, 'Programmation'),
+	('https://cdn-icons-png.flaticon.com/512/3655/3655555.png', 3, 'Gaming'),
+	('https://cdn-icons-png.flaticon.com/512/4149/4149648.png', 4, 'Productivité'),
+	('https://cdn-icons-png.flaticon.com/512/543/543089.png', 5, 'Communication'),
+	('https://cdn-icons-png.flaticon.com/512/705/705062.png', 6, 'Divertissement'),
+	('https://cdn-icons-png.flaticon.com/512/2400/2400603.png', 7, 'Art');
 
--- Listage de la structure de table rama_adrian_expi1a_i164. commentaires
+-- Dumping structure for table rama_adrian_expi1a_i164.commentaires
 DROP TABLE IF EXISTS `commentaires`;
 CREATE TABLE IF NOT EXISTS `commentaires` (
   `id_commentaire` int NOT NULL AUTO_INCREMENT,
@@ -85,19 +86,24 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   CONSTRAINT `commentaires_ibfk_2` FOREIGN KEY (`id_application`) REFERENCES `applications` (`id_application`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.commentaires : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.commentaires: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. roles
+-- Dumping structure for table rama_adrian_expi1a_i164.roles
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
+  `icon_url` varchar(500) DEFAULT NULL,
   `id_role` int NOT NULL AUTO_INCREMENT,
   `nom_role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_role`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.roles : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.roles: ~3 rows (approximately)
+INSERT INTO `roles` (`icon_url`, `id_role`, `nom_role`) VALUES
+	('https://images.freeimages.com/fic/images/icons/573/must_have/256/user.png?fmt=webp&w=500', 1, 'Utilisateur'),
+	('https://cdn-icons-png.flaticon.com/512/2206/2206368.png', 2, 'Admin'),
+	('https://cdn-icons-png.flaticon.com/512/9028/9028075.png', 3, 'Owner');
 
--- Listage de la structure de table rama_adrian_expi1a_i164. signalements
+-- Dumping structure for table rama_adrian_expi1a_i164.signalements
 DROP TABLE IF EXISTS `signalements`;
 CREATE TABLE IF NOT EXISTS `signalements` (
   `id_signalement` int NOT NULL AUTO_INCREMENT,
@@ -112,9 +118,9 @@ CREATE TABLE IF NOT EXISTS `signalements` (
   CONSTRAINT `signalements_ibfk_2` FOREIGN KEY (`id_application`) REFERENCES `applications` (`id_application`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.signalements : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.signalements: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. telechargements
+-- Dumping structure for table rama_adrian_expi1a_i164.telechargements
 DROP TABLE IF EXISTS `telechargements`;
 CREATE TABLE IF NOT EXISTS `telechargements` (
   `id_telechargement` int NOT NULL AUTO_INCREMENT,
@@ -128,35 +134,31 @@ CREATE TABLE IF NOT EXISTS `telechargements` (
   CONSTRAINT `telechargements_ibfk_2` FOREIGN KEY (`id_application`) REFERENCES `applications` (`id_application`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.telechargements : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.telechargements: ~0 rows (approximately)
 
--- Listage de la structure de table rama_adrian_expi1a_i164. utilisateurs
+-- Dumping structure for table rama_adrian_expi1a_i164.utilisateurs
 DROP TABLE IF EXISTS `utilisateurs`;
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
+  `icon_url` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `id_utilisateur` int NOT NULL AUTO_INCREMENT,
+  `id_role` int DEFAULT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
+  `date_naiss` date DEFAULT NULL,
   `nom_utilisateur` varchar(50) NOT NULL,
   `mot_de_passe` varchar(255) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `date_enregistrement` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_utilisateur`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- Listage des données de la table rama_adrian_expi1a_i164.utilisateurs : ~0 rows (environ)
-
--- Listage de la structure de table rama_adrian_expi1a_i164. utilisateursroles
-DROP TABLE IF EXISTS `utilisateursroles`;
-CREATE TABLE IF NOT EXISTS `utilisateursroles` (
-  `id_utilisateur` int NOT NULL,
-  `id_role` int NOT NULL,
-  PRIMARY KEY (`id_utilisateur`,`id_role`),
+  PRIMARY KEY (`id_utilisateur`) USING BTREE,
   KEY `id_role` (`id_role`),
-  CONSTRAINT `utilisateursroles_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`),
-  CONSTRAINT `utilisateursroles_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `FK_utilisateurs_roles` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Listage des données de la table rama_adrian_expi1a_i164.utilisateursroles : ~0 rows (environ)
+-- Dumping data for table rama_adrian_expi1a_i164.utilisateurs: ~3 rows (approximately)
+INSERT INTO `utilisateurs` (`icon_url`, `id_utilisateur`, `id_role`, `nom`, `prenom`, `date_naiss`, `nom_utilisateur`, `mot_de_passe`, `mail`, `date_enregistrement`) VALUES
+	('https://cdn-icons-png.flaticon.com/512/9028/9028075.png', 1, 3, 'Rama', 'Adrian', '2006-11-15', 'DarkVoltz', 'gogogaga69420', 'rama@blader.com', '2024-06-06 15:19:03'),
+	('https://cdn-icons-png.flaticon.com/512/2206/2206368.png', 2, 2, 'Ecuyer', 'Gregory', '2003-05-09', 'Hikari', 'jaimelescrotesdenez123', 'gregory.ecuyer@eduvaud.ch', '2024-06-06 15:22:08'),
+	('https://images.freeimages.com/fic/images/icons/573/must_have/256/user.png?fmt=webp&w=500', 5, 1, 'Leni', 'Vithurshan', '1997-07-18', 'Leni', 'jaimeutilisergrindr69', 'leni.moras@merckgroup.com', '2024-06-06 19:10:36');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

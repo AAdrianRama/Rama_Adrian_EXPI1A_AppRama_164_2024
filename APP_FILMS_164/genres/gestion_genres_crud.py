@@ -29,8 +29,7 @@ def genres_afficher(order_by, id_genre_sel):
                     flash("""La table "applications" est vide. !!""", "warning")
                 elif not data_genres and id_genre_sel > 0:
                     flash(f"L'application demandée n'existe pas !!", "warning")
-                else:
-                    flash(f"Données applications affichées !!", "success")
+
 
         except Exception as Exception_genres_afficher:
             raise ExceptionGenresAfficher(f"fichier : {Path(__file__).name}  ;  "

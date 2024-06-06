@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %} Afficher Utilisateurs {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="col-md-12">
+        <h2>Liste des Utilisateurs</h2>
+        <table class="table table-responsive-sm">
+            {% if data %}
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nom utilisateur</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Date de naissance</th>
+                        <th>Rôle</th>
+                        <th class="text-center" class="align-middle">
+                            <a class="btn btn-primary" href="{{ url_for('utilisateurs_ajouter_wtf') }}" role="button">Ajouter</a>
+                        </th>
+                    </tr>
+                </thead>
+            {% endif %}
+            {% for row in data %}
+                <tbody>
+                    <tr>
+                        <td class="align-middle">
+                            {% if row.icon_url %}
+                                <img src="{{ row.icon_url }}" class="img-fluid" alt="icon" width="50px">
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                        <td class="align-middle">{{ row.nom_utilisateur }}</td>
+                        <td class="align-middle">{{ row.nom }}</td>
+                        <td class="align-middle">{{ row.prenom }}</td>
+                        <td class="align-middle">{{ row.mail }}</td>
+                        <td class="align-middle">{{ row.date_naiss }}</td>
+                        <td class="align-middle">{{ row.nom_role }}</td>
+                        <td class="text-center" class="align-middle">
+                            <a class="btn btn-warning" href="{{ url_for('utilisateurs_update_wtf', id_utilisateur_btn_edit_html=row.id_utilisateur) }}" role="button">Edit</a>
+                        </td>
+                        <td class="text-center" class="align-middle">
+                            <a class="btn btn-danger" href="{{ url_for('utilisateurs_delete_wtf', id_utilisateur_btn_delete_html=row.id_utilisateur) }}" role="button">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            {% else %}
+                <tbody>
+                    <tr>
+                        <td colspan="7">Aucun utilisateur trouvé.</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

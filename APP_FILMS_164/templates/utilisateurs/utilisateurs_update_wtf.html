@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %} Mettre à jour Utilisateur {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Mettre à jour l'utilisateur</h2>
+            <form action="" method="POST" novalidate>
+                {{ form_update.hidden_tag() }}
+
+                <div class="form-group">
+                    <label for="nom_utilisateur">{{ form_update.nom_utilisateur.label }}</label>
+                    {{ form_update.nom_utilisateur(class="form-control", id="nom_utilisateur") }}
+                    {% for error in form_update.nom_utilisateur.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="nom">{{ form_update.nom.label }}</label>
+                    {{ form_update.nom(class="form-control", id="nom") }}
+                    {% for error in form_update.nom.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="prenom">{{ form_update.prenom.label }}</label>
+                    {{ form_update.prenom(class="form-control", id="prenom") }}
+                    {% for error in form_update.prenom.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="mail">{{ form_update.mail.label }}</label>
+                    {{ form_update.mail(class="form-control", id="mail") }}
+                    {% for error in form_update.mail.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="date_naiss">{{ form_update.date_naiss.label }}</label>
+                    {{ form_update.date_naiss(class="form-control", id="date_naiss") }}
+                    {% for error in form_update.date_naiss.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="mot_de_passe">{{ form_update.mot_de_passe.label }}</label>
+                    {{ form_update.mot_de_passe(class="form-control", id="mot_de_passe") }}
+                    {% for error in form_update.mot_de_passe.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_role">{{ form_update.id_role.label }}</label>
+                    {{ form_update.id_role(class="form-control", id="id_role") }}
+                    {% for error in form_update.id_role.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_update.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

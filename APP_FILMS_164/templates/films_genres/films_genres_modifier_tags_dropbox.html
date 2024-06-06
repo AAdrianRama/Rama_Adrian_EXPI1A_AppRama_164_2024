@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block title %} Modifier la Catégorie de l'Application {% endblock %}
 {% block head %}
+    <style>
+        .navbar-custom .navbar-nav .nav-link {
+            color: #1e2125 !important; /* Couleur de texte personnalisée */
+        }
+        .navbar-custom .navbar-brand {
+            color: #1e2125 !important; /* Couleur de texte personnalisée */
+        }
+    </style>
     <link rel="stylesheet" href="{{ url_for('static', filename='tags-selector-tagselect/jquery.tagselect.css') }}">
     <script src="{{ url_for('static', filename='tags-selector-tagselect/jquery.tagselect.js') }}"></script>
 {% endblock %}
@@ -12,10 +20,7 @@
 </style>
 <div class="container">
     <div class="col-md-12">
-        <p>
-            Changer la catégorie de l'application ci-dessous (VEUILLEZ METTRE SEULEMENT UNE SEULE CATÉGORIE)
-        </p>
-        <p>Applications.</p>
+        <h2>Changer la catégorie de l'application ci-dessous (VEUILLEZ METTRE SEULEMENT UNE SEULE CATÉGORIE)</h2>
         <table class="table table-responsive-sm">
             {% if data_film_selected %}
                 <thead>

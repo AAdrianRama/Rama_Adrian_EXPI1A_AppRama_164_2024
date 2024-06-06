@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} Afficher Catégories {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Liste des Catégories</h2>
+            <table class="table table-bordered table-sm">
+                {% if data %}
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                {% endif %}
+
+                {% for row in data %}
+                    <tbody>
+                        <tr>
+                            <td><img src="{{ row.icon_url }}" alt="Icon" style="width: 60px"></td>
+                            <td>{{ row.nom_categorie }}</td>
+                            <td class="text-center">
+                                <a class="btn btn-warning" href="{{ url_for('categorie_update_wtf', id_categorie_btn_edit_html=row.id_categorie) }}" role="button">Modifier</a>
+                                <a class="btn btn-danger" href="{{ url_for('categorie_delete_wtf', id_categorie_btn_delete_html=row.id_categorie) }}" role="button">Supprimer</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                {% else %}
+                    <tbody>
+                        <tr>
+                            <td colspan="3">Aucune catégorie trouvée.</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+            <a class="btn btn-primary" href="{{ url_for('categories_ajouter_wtf') }}" role="button">Ajouter une catégorie</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
