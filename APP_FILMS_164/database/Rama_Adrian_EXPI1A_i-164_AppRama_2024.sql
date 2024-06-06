@@ -154,11 +154,12 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   CONSTRAINT `FK_utilisateurs_roles` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id_role`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table rama_adrian_expi1a_i164.utilisateurs: ~3 rows (approximately)
+-- Dumping data for table rama_adrian_expi1a_i164.utilisateurs: ~4 rows (approximately)
 INSERT INTO `utilisateurs` (`icon_url`, `id_utilisateur`, `id_role`, `nom`, `prenom`, `date_naiss`, `nom_utilisateur`, `mot_de_passe`, `mail`, `date_enregistrement`) VALUES
 	('https://cdn-icons-png.flaticon.com/512/9028/9028075.png', 1, 3, 'Rama', 'Adrian', '2006-11-15', 'DarkVoltz', 'gogogaga69420', 'rama@blader.com', '2024-06-06 15:19:03'),
 	('https://cdn-icons-png.flaticon.com/512/2206/2206368.png', 2, 2, 'Ecuyer', 'Gregory', '2003-05-09', 'Hikari', 'jaimelescrotesdenez123', 'gregory.ecuyer@eduvaud.ch', '2024-06-06 15:22:08'),
-	('https://images.freeimages.com/fic/images/icons/573/must_have/256/user.png?fmt=webp&w=500', 5, 1, 'Leni', 'Vithurshan', '1997-07-18', 'Leni', 'jaimeutilisergrindr69', 'leni.moras@merckgroup.com', '2024-06-06 19:10:36');
+	('https://images.freeimages.com/fic/images/icons/573/must_have/256/user.png?fmt=webp&w=500', 5, 1, 'Leni', 'Vithurshan', '1997-07-18', 'Leni', 'jaimeutilisergrindr69', 'leni.moras@merckgroup.com', '2024-06-06 19:10:36'),
+	('https://images.freeimages.com/fic/images/icons/573/must_have/256/user.png?fmt=webp&w=500', 6, 1, 'Matin', 'Matin', '2000-06-16', 'Matinnn', 'matinlebg', 'matin@matin.matin', '2024-06-06 21:09:21');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
